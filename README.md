@@ -20,5 +20,11 @@ wants (_really_ wants) a _real_ class in browsers that support `customElements`.
 ### IE11
 It's like an anchor around your neck. Nothing? works.
 
-## polymer 3
+## webcomponentsjs polyfill + es6
+
+- [x] chrome
+- [ ] firefox
+- [ ] ie11
+- [ ] edge
+
 
