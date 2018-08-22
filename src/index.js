@@ -2,6 +2,8 @@ import $ from 'jquery';
 import __version__ from './version';
 import FontAwsome4 from './iconlibs';
 
+import './dk-icon-tag';
+
 let dk = selector => document.querySelector(selector);
 
 Object.assign(dk, {

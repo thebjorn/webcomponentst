@@ -7,6 +7,9 @@
 
     <!-- polyfills -->
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-bundle.js"></script>
+
+    <!-- the following breaks all platforms if DkIcon definition is in this file. -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/custom-elements-es5-adapter.js"></script>
     <!--<script type="module" src="dkiconsrc.js"></script>-->
 
 
@@ -23,32 +26,32 @@
     </script>
 
     <script>
-        var dkiconref = null;  // debugging
-
-        class DkIcon extends HTMLElement {
-            constructor() {
-                super();
-                // we need the fontawsome4 css to be visible to the node, and shadow dom is
-                // designed exactly to not do this. Create a regular node for now..
-                const root = this; // .attachShadow({mode: 'open'});
-                const style = `
-                    #icon-unique-42 { font-size: 20px; border: 3px solid red; padding: 4px; }
-                `;
-                this.src = 'check';
-                root.innerHTML = `
-                    <style>${style}</style>
-                    <i id="icon-unique-42"></i>
-                `;
-                this.icon = root.querySelector('#icon-unique-42');
-                dkiconref = dk.icon.make_icon('check', this.icon);
-            }
-
-            invalidate() {
-                // this.icon.setAttribute('src', this.src);
-            }
-        }
-
-        customElements.define('dk-icon', DkIcon);
+        // var dkiconref = null;  // debugging
+        //
+        // class DkIcon extends HTMLElement {
+        //     constructor() {
+        //         super();
+        //         // we need the fontawsome4 css to be visible to the node, and shadow dom is
+        //         // designed exactly to not do this. Create a regular node for now..
+        //         const root = this; // .attachShadow({mode: 'open'});
+        //         const style = `
+        //             #icon-unique-42 { font-size: 20px; border: 3px solid red; padding: 4px; }
+        //         `;
+        //         this.src = 'check';
+        //         root.innerHTML = `
+        //             <style>${style}</style>
+        //             <i id="icon-unique-42"></i>
+        //         `;
+        //         this.icon = root.querySelector('#icon-unique-42');
+        //         dkiconref = dk.icon.make_icon('check', this.icon);
+        //     }
+        //
+        //     invalidate() {
+        //         // this.icon.setAttribute('src', this.src);
+        //     }
+        // }
+        //
+        // customElements.define('dk-icon', DkIcon);
     </script>
 </body>
 </html>
