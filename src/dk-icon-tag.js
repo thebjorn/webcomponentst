@@ -12,11 +12,6 @@ class DkIcon extends HTMLElement {
         `;
         this.src = 'check';
 
-
-        // // below + global <link> doesn't work for chrome
-        // root.innerHTML = `
-        //     <i id="icon-unique-42"></i>
-        // `;
         root.innerHTML = `
             <style>
                 @import url('${dk.icon._url}');
@@ -24,10 +19,7 @@ class DkIcon extends HTMLElement {
             </style>
             <i id="icon-unique-42"></i>
         `;
-        // root.innerHTML = `
-        //     <style>@import url('https://static.datakortet.no/font/fa470/css/font-awesome.css');</style>
-        //     <i id="icon-unique-42"></i>
-        // `;
+
         this.icon = root.querySelector('#icon-unique-42');
         dkiconref = dk.icon.make_icon('check', this.icon);
     }
