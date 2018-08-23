@@ -3,29 +3,55 @@ var dkiconref = null;  // debugging
 class DkIcon extends HTMLElement {
     constructor() {
         super();
-        // we need the fontawsome4 css to be visible to the node, and shadow dom is
-        // designed exactly to not do this. Create a regular node for now..
-        // const root = this; // .attachShadow({mode: 'open'});
-        const root = this.attachShadow({mode: 'open'});
-        const style = `
-            #icon-unique-42 { font-size: 20px; border: 3px solid red; padding: 4px; }
-        `;
-        this.src = 'check';
+        this.root = this.attachShadow({mode: 'open'});
+        this._icon_name = null;
+        this._dk_icon = null;
+        // this._template = () => html`
+        //     <style>
+        //         @import url('${dk.icon._url}');
+        //         @import url('./blueoutline.css');
+        //     </style>
+        //     <i id="icon-unique-42"></i>
+        // `;
 
-        root.innerHTML = `
+
+        this.root.innerHTML = `
             <style>
                 @import url('${dk.icon._url}');
                 @import url('./blueoutline.css');
             </style>
-            <i id="icon-unique-42"></i>
         `;
 
-        this.icon = root.querySelector('#icon-unique-42');
-        dkiconref = dk.icon.make_icon('check', this.icon);
     }
 
-    invalidate() {
-        // this.icon.setAttribute('src', this.src);
+    static get observedAttributes() { return ['value']; }
+
+    attributeChangedCallback(name, oldval, newval) {
+        console.info('attribute changed:', name, oldval, newval);
+        this._icon_name = newval;
+        this.draw();
+    }
+
+    connectedCallback() {
+        this.draw();
+    }
+
+    get value() { console.info('get value', this._icon_name); return this._icon_name; }
+    set value(v) {
+        console.info('set value', v);
+        if (v !== this._icon_name) {
+            this._icon_name = v;
+            this.setAttribute('value', v);
+            // this.draw();   // setAttribute calls draw() in changed callback.
+        }
+    }
+
+    draw() {
+        console.info('draw');
+        if (this._dk_icon) this._dk_icon.remove();
+        this._dk_icon = dk.icon.make_icon(this._icon_name);
+        this.root.appendChild(this._dk_icon);
+        // render(this.template())
     }
 }
 

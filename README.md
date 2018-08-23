@@ -37,10 +37,15 @@ Only works with Chrome [Aug2018].
    dom: `shadow.innerHTML = <style>@import url(..);</style>..` **Except** when the style sheet contains a 
    `@font-face` declaration (like, e.g. fontawsome)
  - for fontawsome you also need to load the style sheet globally (with a `<link ..>`). (this might be a Chrome bug..?)
- - none of the alternatives cause the css to be loaded more than once.  
+ - none of the alternatives cause the css to be loaded more than once. 
+ - found `https://cdn.polyfill.io/v2/polyfill.js?features=Object.entries,Element.prototype.remove` which 
+   returns polyfills for (only) browsers that need it (ie11).
+ - dk-icon is now full featured (attribute change, incl. setting from js) 
 
 Coverage:
 - [x] chrome
+- [x] chrome canary
 - [x] firefox
+- [x] firefox dev. ed. (62.0b19) + webcomponents & shadow dom enabled
 - [x] ie11
 - [x] edge

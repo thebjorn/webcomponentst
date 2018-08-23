@@ -18,7 +18,7 @@ import $ from 'jquery';
  */
 function create_dom(node, attrs) {
     let dom = document.createElement(node);
-    Object.entries(attrs).forEach(([k, v]) => dom.setAttribute(k, v));
+    Object.entries(attrs || {}).forEach(([k, v]) => dom.setAttribute(k, v));
     return dom;
 }
 
@@ -67,7 +67,10 @@ class IconLibrary {
             style = undefined;
         }
         name = name || "";  // catch undefined
+        console.info('name:', name);
+        console.info('item:', item);
         let res = item || create_dom('i');
+        console.info('res:', res);
         res.classList.add('icon');
         let nameparts = name.split(':');
         name = nameparts[0];
