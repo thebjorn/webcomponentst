@@ -2,14 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>webcomponentst</title>
 
     <link rel="stylesheet" href="https://static.datakortet.no/font/fa470/css/font-awesome.css">
 
     <!-- polyfills -->
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/webcomponents-bundle.js"></script>
 
+
+
     <!-- the following breaks all platforms if DkIcon definition is in this file. -->
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.0.0/custom-elements-es5-adapter.js"></script>
+
+    <script src="https://cdn.polyfill.io/v2/polyfill.js?features=Object.entries,Element.prototype.remove"></script>
+
     <!--<script type="module" src="dkiconsrc.js"></script>-->
 
 
@@ -17,11 +23,15 @@
     <script src="dk.js"></script>
 </head>
 <body>
-    Check?: <dk-icon value="check"></dk-icon>
+    Check?: <dk-icon value="home:2x"></dk-icon>
     <i id="foo"></i>
     <script>
         $(function () {
             $('body').addClass('done');    // debugging
+
+            setTimeout(function () {
+                document.querySelector('dk-icon').value = 'check';
+            }, 2000)
         });
     </script>
 
